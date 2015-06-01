@@ -2,10 +2,10 @@
 # ==================================
 # Start date: 1st July 2012
 # 1. Load in console as
-# source("C:\\Documents and Settings\\jms\\My Documents\\Stats\\Rfiles\\jScripts.R")
+#  source("/Users/jamesmungall/git/jScripts/j/stat/statScript.R")
 # or 
-# select console window, file->Change dir->C:\\Documents and Settings\\jms\\My Documents\\Stats\\Rfiles\
-# then you just need > source("jScripts.R")
+# in RStudio, menu bar->Session->set working directory->Users/jamesmungall/git
+# then you just need > source("jScripts/jScripts.R")
 # 2. Run j.startup() to load all jscripts
 # 
 j.startup=function(){
@@ -30,8 +30,10 @@ source("j/enigma/enigmaScript.R");
       j.ints.startup();
 	source("j/sets/setsScript.R");
       j.sets.startup();
-  source("j/cmb/cmbScript.R")
+  source("j/cmb/cmbScript.R");
       j.cmb.startup();
+  source("j/stat/statScript.R");
+      j.stat.startup();
 }
 
 # 
