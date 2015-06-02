@@ -4,7 +4,7 @@ j.stat.oneWayAnova<-function(longDataFrame){
 # 
 # ref: W&W pg 325 and purple book pg22, chickwts
 # 
-# Ho: values are not dependent upon treatment
+# Aim is to create a general one-way ANOVA calculator
 #
 # longDataFrame must be data.frame, with as many obervations as you want, and 2 variables.
 # $ value: num 23, 43, ...
@@ -13,25 +13,25 @@ j.stat.oneWayAnova<-function(longDataFrame){
 # We need computations to complete the following ANOVA  table.
 #---------------------------------------------------------------------------
 # Source                SS    df    MS    F   p-value
-# between treatments
+# between treatmentLevels
 # within(error) 
 
 ldf <- longDataFrame; 
-# Check validity of longDataFrame
+# TODO Check validity of longDataFrame
 
 totalSS <- j.stat.sumOfSquares(ldf$value);
 
-treatments <- levels(ldf$treatment); # feed is a factor with 6 levels.
+treatmentLevels <- levels(ldf$treatment); # feed is a factor with 6 levels.
 
 withinSS = 0;
-for(i in 1:length(treatments)){
-  treatmentData<- subset(ldf, treatment==treatments[i]);
+for(i in 1:length(treatmentLevels)){
+  treatmentData<- subset(ldf, treatment==treatmentLevels[i]);
   ssi <- j.stat.sumOfSquares(treatmentData$value);
   withinSS <- withinSS+ssi;
 }
 betweenSS = totalSS - withinSS;
-dofBetween = (length(treatments)-1);
-dofWithin = length(ldf$value)-length(treatments);
+dofBetween = (length(treatmentLevels)-1);
+dofWithin = length(ldf$value)-length(treatmentLevels);
 MSbetween = betweenSS/dofBetween;
 MSwithin = withinSS / dofWithin;
 Fresult = MSbetween / MSwithin;
